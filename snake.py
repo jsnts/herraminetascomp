@@ -1,47 +1,27 @@
-"""Snake, classic arcade game.
-
-Exercises
-
-1. How do you make the snake faster or slower?
-2. How can you make the snake go around the edges?
-3. How would you move the food?
-4. Change the snake to respond to mouse clicks.
-"""
-
-from random import randrange
 from turtle import *
-
+from random import randrange
 from freegames import square, vector
 
-fooden = [vector(-10,0)]
+food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
-aimem = vector(10,10)
 colors = ['blue','green','cyan','orange','black']
 snake_color = randrange(0,4)
 food_color = randrange(0,4)
 
 def change(x, y):
-    """Change snake direction."""
+    "Change snake direction."
     aim.x = x
     aim.y = y
 
-
-
-
 def inside(head):
-    """Return True if head inside boundaries."""
+    "Return True if head inside boundaries."
     return -200 < head.x < 190 and -200 < head.y < 190
 
-
 def move():
-    """Move snake forward one segment."""
+    "Move snake forward one segment."
     head = snake[-1].copy()
     head.move(aim)
-    food = fooden[-1].copy()
-    food.move(aimem)
-    aimem.x = randrange(-10,10)
-    aimem.y = randrange(-10,10)
 
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
@@ -50,8 +30,7 @@ def move():
 
     snake.append(head)
 
-    if head == fooden:
-        print('Snake:', len(snake))
+    if head == food:
         food.x = randrange(-15, 15) * 10
         food.y = randrange(-15, 15) * 10
     else:
@@ -62,24 +41,9 @@ def move():
     for body in snake:
         square(body.x, body.y, 9, colors[snake_color])
 
-    
-
-    if not inside(food):
-        square(0,0,9, colors[food_color])
-
-    fooden.append(food)
-    
-    
-    fooden.pop(0)
-    
-
-    for body in fooden:
-        square(body.x,body.y,9,colors[food_color])
-    
     square(food.x, food.y, 9, colors[food_color])
     update()
     ontimer(move, 100)
-
 
 setup(420, 420, 370, 0)
 hideturtle()
