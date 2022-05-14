@@ -245,8 +245,9 @@ def move():
 
     for point, course in ghosts:
         if abs(pacman - point) < 20:
-            print('Has eprdido!!!!')
+            print('Has perdido!!!')
             color('orange')
+            up()
             goto(0,0)
             style = ('Courier', 30, 'bold')
             write('Has Perdido.', font=style, align='center')
@@ -259,6 +260,7 @@ def move():
     if abs(pacman - apple) < 20:
             print('Has ganado!!!!')
             color('orange')
+            up()
             goto(0,0)
             style = ('Courier', 30, 'bold')
             write('Has Ganado!!!', font=style, align='center')
@@ -281,8 +283,6 @@ def game():
     setup(420, 420, 370, 0)
     hideturtle()
     tracer(False)
-    writer.goto(160, 160)
-    writer.color('white')
     listen()
     onkey(lambda: change(5, 0), 'Right')
     onkey(lambda: change(-5, 0), 'Left')
