@@ -2,7 +2,6 @@ from pickle import FALSE, TRUE
 from random import choice, randrange
 from turtle import *
 from freegames import floor, vector
-from numpy import apply_over_axes
 
 # Lo priemro que tenemos que hacer es darle los valores inicales a todos nuestros obejtos al igual que crear los mapas con el vector de tiles.
 
